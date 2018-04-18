@@ -5,9 +5,11 @@
   with_items:
     - cif-router.service
     - cif-httpd.service
+  when: DOCKER_BUILD is undefined or DOCKER_BUILD == "no"
 
 - name: enable services at boot
   systemd: name={{ item }} enabled=yes daemon_reload=yes state=started
   with_items:
     - cif-router.service
     - cif-httpd.service
+  when: DOCKER_BUILD is undefined or DOCKER_BUILD == "no"
